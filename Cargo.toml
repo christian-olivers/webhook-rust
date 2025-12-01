@@ -1,0 +1,20 @@
+[package]
+name = "webhook_listener"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Runtime asíncrono,
+tokio = { version = "1", features = ["full"]}
+# Framework web ligero, basado en filtros, ideal para webhooks
+warp = "0.3"
+# Deserialization Json
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# Para vaiables de entorno
+dotenv = "0.15"
+# Permite usar async/await en traits
+async-trait = "0.1"
+thiserror = "1.0"
+uuid = { version = "1", features = ["v4", "serde"] }
+mongodb = "2.8"

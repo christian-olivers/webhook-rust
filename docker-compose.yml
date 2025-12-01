@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  webhook_app:
+    build: .
+    container_name: webhook_listener_app
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: mongodb://mongo_db:27017
+      MONGO_DB_NAME: webhook_db
+    depends_on:
+      - mongo_db
+    networks:
+      - webhook_network
+
+  mongo_db:
+    image: mongo:latest
+    container_name: webhook_db_container
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    expose:
+      - "27017"
+    networks:
+      - webhook_network
+
+networks:
+  webhook_network:
+    driver: bridge
+
+volumes:
+  mongo_data:
